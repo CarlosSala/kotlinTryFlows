@@ -51,7 +51,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // coroutines and permissions
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.activity:activity-ktx:1.8.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.fragment.ktx.v181)
+    implementation(libs.androidx.activity.ktx.v190)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v283)
 }
