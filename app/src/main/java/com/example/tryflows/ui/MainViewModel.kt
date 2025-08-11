@@ -25,15 +25,7 @@ class MainViewModel : ViewModel() {
     // the receiver is the consumer of the data (the collect is the consumer of the data)
     // and in the middle can be intermediate data (before to the collect)
 
-    fun example() {
-
-        /*     viewModelScope.launch {
-                 subscribeRepository.counter.collect {
-
-                     Log.i("test", it.toString())
-                 }
-             }*/
-
+    fun example1() {
         viewModelScope.launch {
             subscribeRepository.counter
                 .map { it.toString() }
@@ -57,13 +49,12 @@ class MainViewModel : ViewModel() {
     }
 
     fun example3() {
-
         viewModelScope.launch {
             subscribeRepository.counter
-                .catch { _uiState.value = MainUIState.Error(it.message.orEmpty()) }
-                .flowOn(Dispatchers.IO) // since here to up
+                .catch { _uiState.value = MainUIState.Error(message = it.message.orEmpty()) }
+                .flowOn(context = Dispatchers.IO) // change context since here to up
                 .collect {
-                    _uiState.value = MainUIState.Success(it)
+                    _uiState.value = MainUIState.Success(numbSubscribers = it)
                 }
         }
     }
@@ -74,7 +65,5 @@ class MainViewModel : ViewModel() {
 
     // stateFlows is who change the UI
     // sharedFlows allows too many subscribed
-
-
 
 }
